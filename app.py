@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 app = Flask(__name__)
 
 @app.route("/")
@@ -43,6 +43,7 @@ def lab1():
                         <li><a href="http://127.0.0.1:5000/lab1/student">/lab1/student - студент </a>
                         <li><a href="http://127.0.0.1:5000/lab1/python">/lab1/python - python</a>
                         <li><a href="http://127.0.0.1:5000/lab1/unfl">/lab1/unfl - инфляция</a>
+                        <li><a href="http://127.0.0.1:5000/lab2/example">/lab1/unfl - инфляция</a>
                     </ol>
                 <footer>&copy;  Скрибка Владислав, Филатова Юлия, ФБИ-11, 3 курс, 2023</footer>
             </body>
@@ -149,3 +150,7 @@ def unfl():
             </body>
         </html>
         '''
+@app.route ('/lab2/example')
+def example():
+    name = 'Скрибка Владислав, Филатова Юлия'
+    return render_template('example.html', name=name)
