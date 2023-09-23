@@ -153,4 +153,5 @@ def unfl():
 @app.route ('/lab2/example')
 def example():
     name = 'Скрибка Владислав, Филатова Юлия'
-    return render_template('example.html', name=name)
+    lab2 = 'Лабораторная работа 2'
+    return render_template('example.html', name=name, lab2=lab2)
