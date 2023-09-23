@@ -8,7 +8,7 @@
  </head>
  <body>
     <header>
-        WEB - программирование, часть 2. {{ lab2 }}
+        WEB - программирование, часть 2. {{% if lab_num %}}Лабораторная работа 2{% endif %}
     </header>
 
     <main>
@@ -19,7 +19,23 @@
     </main>
 
     <footer>
-        &copy; {{ name }}, ФБИ-11, 3 курс, 2023
+        &copy; 
+        { % if name %}
+            {{ name }},
+        {% else %}
+            Аномимус,
+        {% endif %} 
+        { % if group %}
+            {{ group }},
+        {% else %}
+            Не указана группа,
+        {% endif %} 
+        { % if course %}
+            {{ course }},
+        {% else %}
+            Нет курса,
+        {% endif %} 
+        2023
     </footer>
  </body>
  </html>

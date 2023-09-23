@@ -154,4 +154,6 @@ def unfl():
 def example():
     name = 'Скрибка Владислав, Филатова Юлия'
     lab2 = 'Лабораторная работа 2'
-    return render_template('example.html', name=name, lab2=lab2)
+    group = 'ФБИ-11'
+    course = '3 курс'
+    return render_template('example.html', name=name, lab2=lab2, group=group, course= course)
