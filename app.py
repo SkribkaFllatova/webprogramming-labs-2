@@ -152,8 +152,14 @@ def unfl():
         '''
 @app.route ('/lab2/example')
 def example():
-    name = 'Скрибка Владислав, Филатова Юлия'
-    lab2 = 'Лабораторная работа 2'
-    group = 'ФБИ-11'
-    course = '3 курс'
-    return render_template('example.html', name=name, lab2=lab2, group=group, course= course)
+    name, lab2, group, course = 'Скрибка Владислав, Филатова Юлия', 3, 'ФБИ-11', 3
+    fruits = [
+        {'name': 'яблоки', 'price': 100},
+        {'name': 'груши', 'price': 120},
+        {'name': 'апельсины', 'price': 80},
+        {'name': 'мандарины', 'price': 95},
+        {'name': 'манго', 'price': 321}
+        ]
+    return render_template('example.html', name=name, lab2=lab2, group=group, course=course, fruits=fruits)
+
+  

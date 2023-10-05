@@ -8,7 +8,7 @@
  </head>
  <body>
     <header>
-        WEB - программирование, часть 2. {{% if lab_num %}}Лабораторная работа 2{% endif %}
+        WEB - программирование, часть 2. {% if lab2 %}Лабораторная работа 2{% endif %}
     </header>
 
     <main>
@@ -16,26 +16,31 @@
         11 * 28 = {{ 11 * 28 }} <br>
         8452/793 = {{ 8452/793 }} <br>
         45 ** 8 = {{ 45 ** 8 }} <br>
+        <ul>
+            {% for f in fruits %}
+            <li>{{ f.name }}: {{ f.price }} &#8381;</li>
+            {% endfor %}
+        </ul>
     </main>
 
     <footer>
         &copy; 
-        { % if name %}
+        {% if name %}
             {{ name }},
         {% else %}
             Аномимус,
         {% endif %} 
-        { % if group %}
+        {% if group %}
             {{ group }},
         {% else %}
             Не указана группа,
         {% endif %} 
-        { % if course %}
+        {% if course %}
             {{ course }},
         {% else %}
             Нет курса,
         {% endif %} 
-        2023
+            2023
     </footer>
  </body>
  </html>
