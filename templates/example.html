@@ -21,6 +21,12 @@
             <li>{{ f.name }}: {{ f.price }} &#8381;</li>
             {% endfor %}
         </ul>
+
+        <ul>
+            {% for f in knigi %}
+            <li>{{ f.name }}</li>
+            {% endfor %}
+        </ul>
     </main>
 
     <footer>
@@ -28,7 +34,7 @@
         {% if name %}
             {{ name }},
         {% else %}
-            Аномимус,
+            Анонимус,
         {% endif %} 
         {% if group %}
             {{ group }},
