@@ -182,3 +182,7 @@ def lab2():
 @app.route('/lab2/car')
 def car():
     return render_template('car.html')
+
+@app.route('/lab2/zadachi')
+def zadachi():
+    return render_template('zadachi.html')
