@@ -36,3 +36,5 @@ def lab():
 def car():
     return render_template('car.html')
 
+
+
