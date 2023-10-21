@@ -1,0 +1,108 @@
+ {% extends "base.html" %}
+
+ {% block lab %}Лабораторная работа 3{% endblock %}
+ 
+ {% block main %}
+ 
+    {% if fio %}
+
+    <h1>Покупка билета</h1>
+    <h2>Ваш билет:</h2>
+    <h1>ФИО пассажира: {{ fio }}!</h1>
+    <div>Тип билета: {{ 'Детский' if tip == 'get' else 'Взрослый' }}</div>
+    <div>Ваша полка:{{ 'Нижняя' if polka == 'niz' else 'Верхняя' if polka == 'vip' else 'Верхняя боковая' if polka == 'vipbok' else 'Нижняя боковая' if polka == 'nizbok'}} </div>
+    <div>Билет с багажом: {{ 'Да' if bag == 'yes' else 'Нет' }}</div>
+    <div>Ваш возраст: {{ age1 }}</div>
+    <div>Пункт выезда: {{ gorod }}</div>
+    <div>Пункт назначения: {{ gorod1 }}</div>
+    <div>Дата поездки: {{ data }}</div>
+
+    <div>
+        <a href="/lab3/bilet">Заново</a>
+    </div>
+    {% else %}
+
+    <h1>Покупка железнодорожного билета</h1>
+
+    <form>
+
+        <label>ФИО пассажира:</label>
+        <div>
+            <input type="text" name="fio" value="{{ fio or ''}}">
+            <span class="error3">{{ errors2.fio }}</span>
+        </div>
+
+
+        <p></p>
+        <label>Тип билета:</label>
+        <div>
+            <select name="tip">
+                <option value="get" {{ tip == 'get' and 'selected' }}>Детский</option>
+                <option value="vzp" {{ tip == 'vzp' and 'selected' }} >Взрослый</option>
+            </select>
+        </div>
+
+
+        <p></p>
+        <label>Полка:</label>
+        <div>
+            <select name="polka">
+                <option value="niz" {{ polka == 'niz' and 'selected' }}>Нижняя</option>
+                <option value="vip" {{ polka == 'vip' and 'selected' }}>Верхняя</option>
+                <option value="vipbok" {{ polka == 'vipbok' and 'selected' }}>Верхняя боковая</option>
+                <option value="nizbok" {{ polka == 'nizbok' and 'selected' }}>Нижняя боковая</option>
+            </select>
+        </div>
+
+
+        <p></p>
+        <label>Билет с багажом?</label>
+        <div>
+            <select name="bag">
+                <option value="yes" { bag == 'yes' and 'selected' }}>Да</option>
+                <option value="no" { bag == 'no' and 'selected' }}>Нет</option>
+            </select>
+        </div>
+        
+
+        <p></p>
+        <label>Ваш возраст:</label>
+        <div>
+            <input type="number" name="age1" value="{{ age1 or ''}}" min="18" max="120">
+            <span class="error3">{{ errors3.age1 }}</span>
+        </div>
+
+
+        <p></p>
+        <label>Пункт выезда:</label>
+        <div>
+            <input type="text" name="gorod" value="{{ gorod or ''}}">
+            <span class="error4">{{ errors4.gorod }}</span>
+        </div>
+
+
+        <p></p>
+        <label>Пункт назначения:</label>
+        <div>
+            <input type="text" name="gorod1" value="{{ gorod1 or ''}}" >
+            <span class="error5">{{ errors5.gorod1 }}</span>
+        </div>
+
+
+        <p></p>
+        <label>Дата поездки:</label>
+        <div>
+            <input type="date" name="gata" value="{{ gate or ''}}">
+            <span class="error6">{{ errors6.gate }}</span>
+        </div>
+
+
+        <p></p>
+        <div>
+            <button type="submit">Заказать</button>
+        </div>
+    </form>
+
+
+    {% endif %}
+{% endblock %}

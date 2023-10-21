@@ -14,14 +14,15 @@ def form1():
     if user == '':
         errors['user'] = 'Заполните поле!'
 
-    
+    errors1 = {}
     age = request.args.get('age')
     if age == '':
-        errors['age'] = 'Заполните поле!'
+        errors2['age'] = 'Заполните поле!'
 
 
     sex = request.args.get('sex')
-    return render_template('form1.html', user=user, age=age, sex=sex, errors=errors)
+
+    return render_template('form1.html', user=user, age=age, sex=sex, errors=errors, errors1=errors1)
 
 @lab3.route('/lab3/order')
 def order():
@@ -49,3 +50,41 @@ def pay():
 @lab3.route('/lab3/success')
 def success():
     return render_template('success.html')
+
+
+
+@lab3.route('/lab3/bilet')
+def bilet():
+    errors2 = {}
+    fio = request.args.get('fio')
+    if fio == '':
+        errors2['fio'] = 'Заполните поле'
+
+    tip = request.args.get('tip')
+
+    polka = request.args.get('polka')
+
+    bag = request.args.get('bag')
+
+    errors3 = {}
+    age1 = request.args.get('age1')
+    if age1 == '':
+        errors3['age1'] = 'Заполните поле'
+
+    errors4 = {}
+    gorod = request.args.get('gorod')
+    if gorod == '':
+        errors4['gorod'] = 'Заполните поле'
+
+    errors5 = {}
+    gorod1 = request.args.get('gorod1')
+    if gorod1 == '':
+        errors5['gorod1'] = 'Заполните поле'
+
+    errors6 = {}
+    date = request.args.get('date')
+    if date == '':
+        errors6['date'] = 'Заполните поле'
+
+    return render_template('bilet.html', fio=fio, tip=tip, polka=polka, bag=bag, age1=age1, gorod=gorod, gorod1=gorod1, date=date, errors2=errors2, errors3=errors3, errors4=errors4, errors5=errors5, errors6=errors6)
+
