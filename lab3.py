@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+import math
 lab3 = Blueprint('lab3', __name__)
 
 
@@ -87,4 +88,35 @@ def bilet():
         errors6['date'] = 'Заполните поле'
 
     return render_template('bilet.html', fio=fio, tip=tip, polka=polka, bag=bag, age1=age1, gorod=gorod, gorod1=gorod1, date=date, errors2=errors2, errors3=errors3, errors4=errors4, errors5=errors5, errors6=errors6)
+
+
+@lab3.route('/lab3/zachita1/<float:x>/<int:n>')
+def zachita1(x, n):
+    result = 0.0
+    for i in range(n + 1):
+        a = (-1) ** i * x ** (2 * i + 1)
+        b = math.factorial(2 * i + 1)
+        result += a / b
+        z = round (result, 5)
+    if n <= 0:
+        return "N должно быть больше 0"
+    else:
+        return f"Приближенное значение sin({x}) с {n} членами ряда: {z}"
+
+
+@lab3.route('/lab3/zachita2/<float:a>/<float:b>/<float:c>/<float:d>')
+def zachita2(a, b, c, d):
+# Проверяем, какое число отличается от остальных
+    if a == b and a == c:
+        result1 = 4 # Четвертое число отличается
+        return f"Порядковый номер числа, отличного от остальных: {result1}"
+    elif a == b:
+        result2 = 3  # Третье число отличается
+        return f"Порядковый номер числа, отличного от остальных: {result2}"
+    elif a == c:
+        result3 = 2  # Второе число отличается
+        return f"Порядковый номер числа, отличного от остальных: {result3}"
+    else:
+        result4 = 1  # Первое число отличается
+        return f"Порядковый номер числа, отличного от остальных: {result4}"
 
