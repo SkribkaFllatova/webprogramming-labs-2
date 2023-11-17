@@ -1,0 +1,21 @@
+ {% extends "base.html" %}
+
+ {% block lab %}Лабораторная работа 4{% endblock %}
+ 
+ {% block main %}
+ 
+    <div>Cookies</div>
+    <form method="post">
+        <div>
+            <label for="color">Выберите цвет:</label>
+            <input type="color" id="color" name="color">
+        </div>
+        <div>
+            <button type="submit">ОК</button>
+        </div>
+    </form>
+
+{% endblock %}
+
+
+
