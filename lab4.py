@@ -51,6 +51,46 @@ def holog():
         elif (grad >= -4) and (grad <= -1):
             error1 = f'Установлена температура: { grad } °C ❄️'
     return render_template('holog.html', grad = grad, error1=error1)
-        
 
 
+@lab4.route('/lab4/zerno', methods = ['GET' , 'POST'])
+def zerno():
+    if request.method == 'GET':
+        return render_template('zerno.html')
+    price = 0
+    error2 = ''
+    zerno = request.form.get('zerno')
+    weight = request.form.get('weight')
+
+    if weight == '':
+        error2 = 'Не введен вес'
+        return render_template('zerno.html', error2=error2)
+
+    weight = int(weight)
+
+    if zerno == 'zxvtym':
+        price = 12000 * weight
+    elif zerno == 'jdtc':
+        price = 8500 * weight
+    elif zerno == 'gitybwf':
+        price = 8700 * weight
+    else:
+        zerno == 'hj;m'
+        price = 14000 * weight
+
+    if weight <= 0:
+        error2 = 'Неверное значение веса'
+        return render_template('zerno.html', error2=error2)
+    elif weight > 50:
+        error2 = 'Такого объема сейчас нет в наличии'
+        return render_template('zerno.html', error2=error2)
+    else:
+        weight > 50
+        price = price - (price * 10 / 100)
+        error2 = 'Применится скидка 10% за большой объем'
+        return render_template('success2.html', price=price, zerno=zerno, weight=weight, error2=error2)
+
+
+@lab4.route('/lab4/success2')
+def success2():
+    return render_template('success2.html')

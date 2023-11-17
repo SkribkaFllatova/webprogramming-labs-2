@@ -1,0 +1,14 @@
+ {% extends "base.html" %}
+
+ {% block lab %}Лабораторная работа 4{% endblock %}
+ 
+ {% block main %}
+    <div>{{ error2 }}</div>
+
+    <div>Заказ успешно сформирован. Вы заказали зерною Вес: {{ weight }} т. Сумма к оплате: {{ price }} руб.</div>
+
+    <a href="/lab4/zerno">На страницу заказа зерна</a>
+{% endblock %}
+
+
+
