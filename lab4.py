@@ -29,3 +29,28 @@ def success1():
     return render_template('success1.html', username = username)
 
 
+@lab4.route('/lab4/holog', methods = ['GET' , 'POST'])
+def holog():
+    if request.method == 'GET':
+        return render_template('holog.html')
+
+    grad = request.form.get('grad')
+
+    if grad == '':
+        error1 = 'Не задана температура'
+    else:
+        grad = int(grad)
+        if grad < -12:
+            error1 = 'Не удалось установить температуру - слишком низкое значение'
+        elif grad > -1:
+            error1 = 'Не удалось установить  температуру - слишком высокое значение'
+        elif (grad >= -12) and (grad <= -9):
+            error1 = f'Установлена температура: { grad } °C ❄️❄️❄️'
+        elif (grad >= -8) and (grad <= -5):
+            error1 = f'Установлена температура: { grad } °C ❄️❄️' 
+        elif (grad >= -4) and (grad <= -1):
+            error1 = f'Установлена температура: { grad } °C ❄️'
+    return render_template('holog.html', grad = grad, error1=error1)
+        
+
+
