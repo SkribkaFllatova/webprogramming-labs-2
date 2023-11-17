@@ -102,9 +102,32 @@ def cookies():
         return render_template('cookies.html')
     
     color = request.form.get('color')
+    backcolor = request.form.get('backcolor')
+    fontsize = request.form.get('fontsize')
+    error3 = ''
+
+    if color == backcolor:
+        error3 = 'Цвета не должны совпадать!'
+        return render_template('cookies.html', error3=error3)
+    elif color != backcolor:
+        color = color
+
+    if fontsize == '':
+        error3 = 'Не задан размер текста:'
+        return render_template('cookies.html', error3=error3)
+
+    if fontsize is not None and fontsize.isdigit():
+        fontsize = int(fontsize)
+        if 5 <= fontsize <= 30:
+            fontsize = str(fontsize) + 'px'
+    else:
+        error3 = 'Размер шрифта должен быть от 5 до 30'
+        return render_template('cookies.html', error3=error3)
 
     headers = {
         'Set-Cookie': 'color=' + color + '; path=/',
+        'Set-Cookie': 'backcolor=' + backcolor + '; path=/',
+        'Set-Cookie': 'fontsize=' + fontsize + '; path=/',
         'Location': '/lab4/cookies'
     }
 

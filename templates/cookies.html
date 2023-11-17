@@ -3,7 +3,7 @@
  {% block lab %}Лабораторная работа 4{% endblock %}
  
  {% block main %}
- 
+
     <div>Cookies</div>
     <form method="post">
         <div>
@@ -11,7 +11,16 @@
             <input type="color" id="color" name="color">
         </div>
         <div>
+            <label for="fontsize">Выберите размер шрифта:</label>
+            <input type="fontsize" id="fontsize" name="fontsize">
+        </div>
+        <div>
+            <label for="backcolor">Выберите цвет шрифта:</label>
+            <input type="color" id="backcolor" name="backcolor">
+        </div>
+        <div>
             <button type="submit">ОК</button>
+            <span>{{ error3 }}</span>
         </div>
     </form>
 
