@@ -96,39 +96,37 @@ def success2():
     return render_template('success2.html')
 
 
-@lab4.route('/lab4/cookies', methods = ['GET' , 'POST'])
+@lab4.route('/lab4/cookies', methods=['GET', 'POST'])
 def cookies():
     if request.method == 'GET':
         return render_template('cookies.html')
-    
-    color = request.form.get('color')
-    backcolor = request.form.get('backcolor')
-    fontsize = request.form.get('fontsize')
-    error3 = ''
 
-    if color == backcolor:
-        error3 = 'Цвета не должны совпадать!'
-        return render_template('cookies.html', error3=error3)
-    elif color != backcolor:
+    color = request.form.get('color')
+    b_color = request.form.get('background-color')
+    f_size = request.form.get('font-size')
+    error = ''
+
+    if color == b_color:
+        error = 'Цвет текста не должен совпадать с цветом фона'
+        return render_template('cookies.html', error=error)
+    elif color != b_color:
         color = color
 
-    if fontsize == '':
-        error3 = 'Не задан размер текста:'
-        return render_template('cookies.html', error3=error3)
+    if f_size == '' or f_size is None:
+        error = 'Задайте размер текста'
+        return render_template('cookies.html', error=error)
 
-    if fontsize is not None and fontsize.isdigit():
-        fontsize = int(fontsize)
-        if 5 <= fontsize <= 30:
-            fontsize = str(fontsize) + 'px'
+    if f_size.isdigit() and 5 <= int(f_size) <= 30:
+        f_size = str(f_size) + 'px'
     else:
-        error3 = 'Размер шрифта должен быть от 5 до 30'
-        return render_template('cookies.html', error3=error3)
+        error = 'Размер текста должен быть числом от 5 до 30'
+        return render_template('cookies.html', error=error)
 
-    headers = {
-        'Set-Cookie': 'color=' + color + '; path=/',
-        'Set-Cookie': 'backcolor=' + backcolor + '; path=/',
-        'Set-Cookie': 'fontsize=' + fontsize + '; path=/',
-        'Location': '/lab4/cookies'
-    }
+    headers = [
+        ('Set-Cookie', f'color={color}; path=/'),
+        ('Set-Cookie', f'font-size={f_size}; path=/'),
+        ('Set-Cookie', f'background-color={b_color}; path=/'),
+        ('Location', '/lab4/cookies')
+    ]
 
     return '', 303, headers
