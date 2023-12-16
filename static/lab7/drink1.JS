@@ -26,7 +26,6 @@ function getPrice() {
     })
 }
 
-let savedCardNum
 
 function pay() {
     const card_num = document.querySelector('[name=card_num]').value;
@@ -34,8 +33,6 @@ function pay() {
     const sugar = document.querySelector('[name=sugar]').checked;
     const drink = document.querySelector('[name=drink]:checked').value;
     const cvv = document.querySelector('[name=cvv]').value;
-
-    savedCardNum = card_num;
 
     const obj = {
         "method": "pay",
@@ -74,7 +71,6 @@ function pay() {
 
 
 function refund() {
-    const card_num =  savedCardNum;
     const drink = document.querySelector('[name=drink]:checked').value;
     const milk = document.querySelector('[name=milk]').checked;
     const sugar = document.querySelector('[name=sugar]').checked;
