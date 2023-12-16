@@ -1,94 +1,108 @@
-function getPrice(params) {
+function getPrice() {
     const milk = document.querySelector('[name=milk]').checked;
     const sugar = document.querySelector('[name=sugar]').checked;
     const drink = document.querySelector('[name=drink]:checked').value;
 
     const obj = {
         "method": "get-price",
-        "params":{
+        "params": {
             drink: drink,
             milk: milk,
             sugar: sugar
         }
-    }
+    };
 
     fetch('/lab7/api', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(obj)
     })
-    .then(function(resp){
+    .then(function(resp) {
         return resp.json();
     })
-    .then(function(data){
-        document.querySelector('#price').innerHTML = `Цена напитка: ${data.result} руб.`;
+    .then(function(data) {
+        document.querySelector('#price').innerHTML = `Цена напитка: ${data.result} руб`;
         document.querySelector('#pay').style.display = '';
     })
 }
 
+let savedCardNum
 
 function pay() {
+    const card_num = document.querySelector('[name=card_num]').value;
     const milk = document.querySelector('[name=milk]').checked;
     const sugar = document.querySelector('[name=sugar]').checked;
     const drink = document.querySelector('[name=drink]:checked').value;
-    const cardNumber = document.querySelector('[name=card]').value;
-    const holderName = document.querySelector('[name=name]').value;
     const cvv = document.querySelector('[name=cvv]').value;
+
+    savedCardNum = card_num;
 
     const obj = {
         "method": "pay",
-        "params":{
+        "params": {
             drink: drink,
             milk: milk,
             sugar: sugar,
-            card: cardNumber,
-            name: holderName,
+            card_num: card_num,
             cvv: cvv
         }
-    }
+    };
 
     fetch('/lab7/api', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(obj)
     })
-    .then(function(resp){
+    .then(function(resp) {
         return resp.json();
     })
-    .then(function(data){
-        if(data.success){
-            alert(`Оплата прошла успешно. С карты списано ${data.result} руб.`);
-            document.querySelector('#cancel').style.display = '';
-        } else {
-            alert(`Ошибка при оплате: ${data.error}`);
-            document.querySelector('#cancel').style.display = 'none';
+    .then(function(data) {
+        if (data.error) {
+            document.querySelector('#error_message').innerHTML = data.error;
+        } 
+        else {
+            document.querySelector('#error_message').innerHTML = '';
+            document.querySelector('#lol').innerHTML = `${data.result}`;
+            document.querySelector('#pay').style.display = 'none';
+            document.querySelector('#price').style.display = 'none';
+            document.querySelector('#pay_back').style.display = '';
         }
     })
+
+
 }
 
-function refund() {
-    const cardNumber = document.querySelector('[name=card]').value;
-    const holderName = document.querySelector('[name=name]').value;
-    const cvv = document.querySelector('[name=cvv]').value;
 
+function refund() {
+    const card_num =  savedCardNum;
+    const drink = document.querySelector('[name=drink]:checked').value;
+    const milk = document.querySelector('[name=milk]').checked;
+    const sugar = document.querySelector('[name=sugar]').checked;
+
+    
     const obj = {
         "method": "refund",
         "params": {
-            card: cardNumber,
-            name: holderName,
-            cvv: cvv
+            drink: drink,
+            milk: milk,
+            sugar: sugar,
+            card_num: card_num,
         }
-    }
+    };
 
     fetch('/lab7/api', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(obj)
     })
-    .then(function (resp) {
+
+    .then(function(resp) {
         return resp.json();
     })
-    .then(function (data) {
-        alert(data.message = `Сумма ${data.result} руб. вернулась на карту`); 
+
+    .then(function(data) {
+            document.querySelector('#lol').innerHTML = `${data.result}`;
+            document.querySelector('#back').style.display = ''
     })
-}
+
+}   

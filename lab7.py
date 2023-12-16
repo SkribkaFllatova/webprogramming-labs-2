@@ -66,5 +66,10 @@ def pay(params):
         return {"result": None, "error": "Неверный номер CVV/CVC"}
 
     price = calculate_price(params)
-    return {"result" : f'C rfhns {card_num} списано {price} рублей'}
-        
+    return {"result" : f'C карты {card_num} списано {price} рублей'}
+
+
+def refund(params):
+    card_num = params['card_num']
+    price = calculate_price(params)
+    return {"result": f'На карту {card_num} возвращено {price} руб'} 
