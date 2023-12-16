@@ -1,34 +1,72 @@
 {% extends "base.html" %}
 
-{% block lab %}Лабораторная работа 4{% endblock %}
- 
+{% block lab %}Лабораторная работа 7{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='lab7/drink1.js') }}"></script>
+{% endblock %}
+
 {% block main %}
+    <h1>Заказ напитка</h1>
 
-    <h2>Заказ зерна</h2>
-    <form method="POST">
+        <div>Напиток:</div>
+        <br>
+        <label>
+            <input type="radio" value="coffe" name="drink" checked>Кофе
+        </label>
+        <label>
+            <input type="radio" value="black-tea" name="drink" checked>Черный чай
+        </label>
+        <label>
+            <input type="radio" value="green-tea" name="drink" checked>Зеленый чай 
+        </label
+
+
+            <div>Добавки:</div>
+        <br>
+        <label>
+            <input type="checkbox" name="milk" checked>Молоко 
+        </label>
+        <label>
+            <input type="checkbox" name="sugar" checked>Сахар
+        </label>
         <div>
-            <label for="zerno">Вид зерна:</label>
-            <select name="zerno">
-                <option value="zxvtym">ячмень</option>
-                <option value="jdtc">овес</option>
-                <option value="gitybwf">пшеница</option>
-                <option value="hj;m">рожь</option>
-            </select>
+            <button onclick="getPrice()" type="button">Рассчитать цену</button>
         </div>
 
-        <div>
-            <label for="weight">Напиши вес в тоннах:</label>
-            <input type="number" name="weight" value="{{ weight or ''}}">
+        <div id="price"></div>
+
+        <div id="pay" style="display: none;">
+
+        
+            <div>Номер банковской карты:</div>
+            <label>
+                <input type="text" name="card_num">
+            </label>
+
+            <div>Имя держателя карты:</div>
+            <label>
+                <input type="text" name="name">
+            </label>
+
+            <div>Номер CVV:</div>
+            <label>
+                <input type="text" name="cvv">
+            </label>
+
+            <div>
+                <button onclick="pay()" type="button">Оплатить</button>  
+            </div>
+
+            <div id="error_message"></div>
         </div>
 
-        <span style="color: red;">{{ error2 }}</span>
-
-        <div>
-            <button type="submit">Купить</button>
+        <div id="lol"></div>
+        <div id="pay_back" style="display: none">
+        <button onclick="refund()" type="button">Отмена оплаты</button> 
+        <button style=" display: none;" id="">
+            <a href="/lab7/drink" style="text-decoration: none;" id="back">Повторить заказ</a>
+        </button>
         </div>
-
-    </form>
-    
-    <a href="/lab4/zerno">На заказа зерна</a>
-
-    {% endblock %}
+     
+{% endblock %}
