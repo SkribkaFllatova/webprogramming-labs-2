@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+    <div>
+    <h1>Новая заметка</h1>
+        <form method="POST">
+            <input name="title_article" type="text" placeholder="Названии статьи">
+            <textarea name="text_article" placeholder="Текст статьи" rows="20"></textarea>
+            <input type="submit" value="Apply"/>
+        </form>
+    </div>
+    <div>
+        <h1>{{ article_title }}</h1>
+        {% fpr paragraph in article_text %}
+        <p>{{ paragraph }}</p>
+        {% endfor %}
+    </div>
+ 
+{% block main %}
+
+{% endblock %}
