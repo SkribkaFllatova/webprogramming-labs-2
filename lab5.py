@@ -7,7 +7,7 @@ lab5 = Blueprint("lab5", __name__)
 
 def dbConnect():
     conn = psycopg2.connect(
-        host="127.0.0.1",
+        host="127.0.0.1",   
         port="65223", 
         database="sf",
         user="skribkafilatova",
