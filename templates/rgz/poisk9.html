@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block lab %}РГЗ{% endblock %}
+
+{% block main %}
+<div><a href="/vlad/">Главное меню аптеки</a></div>
+<h1>Поиск лекарств</h1>
+    <input type="text" placeholder="Какое лекарство найти?" name="lek">
+        <span class="errors">{{errors.user }}</span>
+    <input type="submit" value="Найти">
+  
+    <table>
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Непатентованное название</th>
+                <th>Отпускается по рецепту</th>
+                <th>Цена</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<a href="/vlad/poisk8">Назад</a>
+{% endblock %}

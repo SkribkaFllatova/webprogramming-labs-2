@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block lab %}РГЗ{% endblock %}
+
+{% block main %}
+    <h1>Аптека хорошего человека!</h1>
+         <a href="/vlad/poisk">Поиск лекарств</a>    
+
+    <div><a href="/vlad/login">Вход для фармацевта</a></div>
+    <div style="position: fixed; left: 40%; top: 125px;">
+    <img src="{{ url_for('static' , filename='apt.jpg')}}" style="width: 120%;">
+    </div>
+{% endblock %}

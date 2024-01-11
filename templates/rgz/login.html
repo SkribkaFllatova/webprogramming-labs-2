@@ -1,0 +1,31 @@
+ {% extends "base.html" %}
+
+ {% block lab %}РГЗ{% endblock %}
+ 
+ {% block main %}
+<div><a href="/vlad/">Главное меню аптеки</a></div>
+<div><a href="/vlad/poisk">Поиск лекарств</a></div>
+        <h1>Вход</h1>
+        <div style="color: red;">{{ error }}</div>
+        <form method="post">
+                <div>
+                        <label for="username">Пользователь:</label>
+                        <input type="text" id="username" name="username" value="{{ username }}">
+                </div>
+                <div>
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" name="password" value="{{ password }}">
+                </div>
+                <div>
+                        <button type="submit">Войти</button>
+                        <button type="reset">Отмена</button>
+                </div>
+        </form>
+
+<div style="position: fixed; left: 40%; top: 125px;">
+        <img src="{{ url_for('static' , filename='tel.jpg')}}" style="width: 90%;">
+</div>
+
+{% endblock %}
+
+
